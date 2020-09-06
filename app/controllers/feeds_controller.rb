@@ -30,7 +30,7 @@ class FeedsController < ApplicationController
   def create
     @feed = Feed.new(feed_params)
       if @feed.save
-        redirect_to confirm_feeds_path
+        redirect_to feeds_path
       else
         render :new
       end
