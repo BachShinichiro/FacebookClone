@@ -29,16 +29,11 @@ class FeedsController < ApplicationController
   # POST /feeds.json
   def create
     @feed = Feed.new(feed_params)
-
-    respond_to do |format|
       if @feed.save
-        format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
-        format.json { render :show, status: :created, location: @feed }
+        redirect_to confirm_feeds_path
       else
-        format.html { render :new }
-        format.json { render json: @feed.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /feeds/1
@@ -66,16 +61,17 @@ class FeedsController < ApplicationController
   end
   def confirm
     @feed = Feed.new(feed_params)
+    render :new  if @feed.invalid?
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_feed
-      @feed = Feed.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_feed
+    @feed = Feed.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def feed_params
-      params.require(:feed).permit(:image, :image_cache)
-    end
+  # Only allow a list of trusted parameters through.
+  def feed_params
+    params.require(:feed).permit(:image, :image_cache, :content)
+  end
 end

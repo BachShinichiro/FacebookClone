@@ -1,4 +1,9 @@
 <div class="text-center">
   <h1><%= @user.name %>のページ</h1>
   <p>メールアドレス: <%= @user.email %></p>
+
+  <% if logged_in? %>
+  <p><%= link_to '一覧へ', feeds_path %></p>
+  <p><%= link_to '新規投稿へ', new_feed_path %></p>
 </div>
+<% end %>
