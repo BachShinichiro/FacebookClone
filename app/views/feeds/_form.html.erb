@@ -13,12 +13,12 @@
     <% end %>
 
     <div class="field">
-      <%= form.label :image %>
-      <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
-      <%= form.file_field :image %>
-      <%= form.hidden_field :image_cache %>
-      <%= form.label :内容 %>
-      <%= form.text_field :content %>
+      <li><%= form.label :image %></li>
+      <li><%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %></li>
+      <li><%= form.file_field :image %></li>
+      <li><%= form.hidden_field :image_cache %></li>
+      <li><%= form.label :内容 %></li>
+      <li><%= form.text_field :content %></li>
     </div>
 
     <div class="actions">
